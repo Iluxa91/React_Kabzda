@@ -2,24 +2,20 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 
 function App() {
-  let a = new Date()
-const [hours,setHours]=useState(a.getHours())
-const [minutes,setMinutes]=useState(a.getMinutes())
-const [seconds,setSeconds]=useState(a.getSeconds())
+const [hours,setHours]=useState(new Date())
+
 
   useEffect(()=>{
     setInterval(()=>{
-      let a = new Date()
-      setHours(a.getHours())
-      setMinutes(a.getMinutes())
-      setSeconds(a.getSeconds())
+      setHours(new Date)
+
     },1000)
   },[])
-
+ let stringHours = hours.toLocaleTimeString()
 
   return (
     <div>
-      Hello, now {hours}:{minutes}:{seconds} o'clock
+      `Hello, now {stringHours}`
     </div>
   );
 }
