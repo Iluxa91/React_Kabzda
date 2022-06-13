@@ -1,23 +1,35 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
 
+let dateTo2digitNumb = (numb: number) => {
+    return numb > 9 ? numb : '0' + numb
+}
+
 function App() {
-const [hours,setHours]=useState(new Date())
+    const [date, setDate] = useState(new Date())
 
+    useEffect(() => {
 
-  useEffect(()=>{
-    setInterval(()=>{
-      setHours(new Date)
+        const intervalId = setInterval(() => {
+            setDate(new Date)
 
-    },1000)
-  },[])
- let stringHours = hours.toLocaleTimeString()
+        }, 1000)
 
-  return (
-    <div>
-      `Hello, now {stringHours}`
-    </div>
-  );
+        return () => {clearInterval(intervalId)}
+    }, [])
+    // let stringHours = hours.toLocaleTimeString()
+
+    const setTrueHours = dateTo2digitNumb(date.getHours())
+    const setTrueMinutes = dateTo2digitNumb(date.getMinutes())
+    const setTrueSeconds = dateTo2digitNumb(date.getSeconds())
+
+    return (
+        <div>
+            Hello, now {setTrueHours}:
+            {setTrueMinutes}:
+            {setTrueSeconds}
+        </div>
+    );
 }
 
 export default App;
